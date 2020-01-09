@@ -1,4 +1,4 @@
-#define SHOWDEGUGINFO 1
+
 
 void ClearTPMSData(int i)
 {

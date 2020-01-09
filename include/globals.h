@@ -1,5 +1,5 @@
 #define USE_PROGMEMCRC 1
-//#define SHOWDEGUGINFO 1
+#define SHOWDEGUGINFO 1
 
 #define I2C_ADDRESS 0x3C
 
@@ -17,7 +17,8 @@
 #define FONTBAR_0 32
 
 const int CC1101_CS = 10;  // Define the Chip Select pin
-const int RXPin = 7;
+//const int RXPin = 7;
+const int RXPin = 2; //interrupt for atmega328
 
 const int DEBUGPIN = 6;
 
