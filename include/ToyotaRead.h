@@ -531,22 +531,29 @@ int ReceiveMessage()
   LastEdgeTime_us = micros();
   CD_Width = micros();
 
+  digitalWrite(DEBUGPIN,HIGH);
+
   attachInterrupt(digitalPinToInterrupt(RXPin), EdgeInterrupt, CHANGE);
   while (GetCarrierStatus() == true)
   {
   }
   detachInterrupt(digitalPinToInterrupt(RXPin));
 
-  //digitalWrite(DEBUGPIN,LOW);
+  digitalWrite(DEBUGPIN,LOW);
 
   CD_Width = micros() - CD_Width;
-  if ((CD_Width >= 7600) && (CD_Width <= 8200))
+  if(CD_Width > 6800){
+    Serial.print(CD_Width, DEC);
+    Serial.print(",");
+  }
+  //if ((CD_Width >= 7600) && (CD_Width <= 8200))
+  if ((CD_Width >= 6800) && (CD_Width <= 8200))
   {
-    //Serial.println(F("Checking"));
+    Serial.println(F("Checking"));
     digitalWrite(LED_RX,LED_ON);
     CheckIndex = 0;
     ValidateTimings();
-    //Serial.println(F("Checking complete"));
+    Serial.println(F("Checking complete"));
     digitalWrite(LED_RX,LED_OFF);
     return (BitCount);
   }

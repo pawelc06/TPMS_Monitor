@@ -1,9 +1,10 @@
 #define USE_PROGMEMCRC 1
-#define SHOWDEGUGINFO 1
+//#define SHOWDEGUGINFO 1
 
 #define I2C_ADDRESS 0x3C
 
-#define LED_RX 17
+//#define LED_RX 17
+#define LED_RX 4
 #define LED_OFF HIGH
 #define LED_ON LOW
 
@@ -18,7 +19,7 @@
 
 const int CC1101_CS = 10;  // Define the Chip Select pin
 //const int RXPin = 7;
-const int RXPin = 2; //interrupt for atmega328
+const int RXPin = 3; //interrupt for atmega328
 
 const int DEBUGPIN = 6;
 
@@ -60,10 +61,18 @@ unsigned long IncomingAddress;
 
 
 //this table (and its order define known TPMS IDs so that they their values are always displayed in the same order
+/*
 const unsigned long PROGMEM IDLookup[]
 {
   0xF1721EB0, 0xF172221F, 
   0xF172223E, 0xF1721E9A
+};
+*/
+
+const unsigned long PROGMEM IDLookup[]
+{
+  0xD3ED7796, 0xD3ED76F4, 
+  0xD3ED7724, 0xD3ED7726
 };
 
 

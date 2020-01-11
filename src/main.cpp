@@ -63,6 +63,8 @@ void setup() {
 
 
   pinMode(LED_RX, OUTPUT);
+  digitalWrite(LED_RX, LED_ON);
+  //while(1);
   pinMode(RXPin, INPUT);
 
 
@@ -178,7 +180,7 @@ void loop() {
         DecodeTPMS();
         TPMS_Changed = true;  //indicates the display needs to be updated.
       }
-    }
+    } 
 
     if (TPMS_Changed)
     {
