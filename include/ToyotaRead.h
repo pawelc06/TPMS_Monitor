@@ -173,7 +173,14 @@ void DecodeTPMS()
     return;
   }
 
-  realpressure = pressure1 * 0.25 - 7.0;
+  
+
+  realpressure = pressure1 * 0.25 - 7.0; //in PSI
+  realpressure = realpressure * 6.89475729;
+  
+  Serial.print(F("Pressure: "));
+  Serial.println(realpressure);
+  
   realtemp = temp - 40.0;
 
 #ifdef SHOWDEGUGINFO
@@ -546,14 +553,14 @@ int ReceiveMessage()
     Serial.print(CD_Width, DEC);
     Serial.print(",");
   }
-  //if ((CD_Width >= 7600) && (CD_Width <= 8200))
-  if ((CD_Width >= 6800) && (CD_Width <= 8200))
+  if ((CD_Width >= 7600) && (CD_Width <= 8200))
+  //if ((CD_Width >= 6800) && (CD_Width <= 8200))
   {
-    Serial.println(F("Checking"));
+    //Serial.println(F("Checking"));
     digitalWrite(LED_RX,LED_ON);
     CheckIndex = 0;
     ValidateTimings();
-    Serial.println(F("Checking complete"));
+    //Serial.println(F("Checking complete"));
     digitalWrite(LED_RX,LED_OFF);
     return (BitCount);
   }

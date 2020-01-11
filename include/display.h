@@ -90,7 +90,7 @@
   
     display.setCursor(0, 0);
     display.println("Toyota TPMS Monitor");
-    display.println("      (JSM Solutions)");
+   
   
   
   }
@@ -168,7 +168,8 @@
   
       if (TPMS[i].TPMS_ID != 0)
       {
-        dtostrf(TPMS[i].TPMS_Pressure, 3, 1, s);
+        //dtostrf(TPMS[i].TPMS_Pressure, 3, 1, s);
+        dtostrf(TPMS[i].TPMS_Pressure, 3, 0, s);
         //sprintf(temperature,"%s F", str_temp);
         //sprintf(s,"%.1f",TPMS[i].TPMS_Pressure);
         display.setFont(Adafruit5x7);
@@ -193,9 +194,16 @@
         display.print(DisplayTimeoutBar(millis() - TPMS[i].lastupdated));
       }
 
+     
 
     }
-    
+
+    /*
+     display.setCursor(0, 9);
+     display.print(TPMS[0].TPMS_ID,HEX);
+     display.print(" ");
+     display.print(TPMS[1].TPMS_ID,HEX);
+     */
   
   }
 #endif
