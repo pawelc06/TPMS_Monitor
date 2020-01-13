@@ -90,6 +90,7 @@
   
     display.setCursor(0, 0);
     display.println("Toyota TPMS Monitor");
+    display.println("Pressure in [kPa]");
    
   
   
