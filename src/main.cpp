@@ -48,6 +48,8 @@ int DecodeBitArray()
 void setup() {
 
   byte resp;
+  byte ver;
+  char verStr[4];
   unsigned int t;
   int LEDState = LOW;
   int i;
@@ -76,18 +78,23 @@ void setup() {
 
   Serial.println("Starting...");
 
-
-
-  setIdleState();
-  digitalWrite(LED_RX, LED_OFF);
-
   resp = readStatusReg(CC1101_PARTNUM);
   Serial.print(F("Part no: "));
   Serial.println(resp, HEX);
 
-  resp = readStatusReg(CC1101_VERSION);
+  ver = readStatusReg(CC1101_VERSION);
   Serial.print(F("Version: "));
+  Serial.println(ver, HEX);
+
+  resp = readStatusReg(CC1101_RSSI);
+  Serial.print(F("RSSI: "));
   Serial.println(resp, HEX);
+
+  setIdleState();
+  digitalWrite(LED_RX, LED_OFF);
+
+ 
+  
 
 
 #if USE_ADAFRUIT
@@ -107,7 +114,7 @@ void setup() {
 
   Serial.println(F("SSD1306 initialised OK"));
 
-
+   
   digitalWrite(LED_RX, LED_ON);
   LEDState = HIGH;
 
@@ -126,6 +133,12 @@ void setup() {
 #endif
 
   InitTPMS();
+
+  itoa(ver,verStr,16);
+
+  display.write("Ver:");  
+  display.write(verStr);  
+  
 
 
   digitalWrite(LED_RX, LED_OFF);
