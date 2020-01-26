@@ -155,7 +155,7 @@ void DecodeTPMS()
 
   }
 
-  // id = (unsigned)RXBytes[0] << 24 | RXBytes[1] << 16 | RXBytes[2] << 8 | RXBytes[3];
+  //id = (unsigned)RXBytes[0] << 24 | RXBytes[1] << 16 | RXBytes[2] << 8 | RXBytes[3];
 
   status = (RXBytes[4] & 0x80) | (RXBytes[6] & 0x7f); // status bit and 0 filler
 
@@ -182,6 +182,9 @@ void DecodeTPMS()
   Serial.println(realpressure);
   
   realtemp = temp - 40.0;
+
+  Serial.print(F("ID: "));
+  Serial.println(id, HEX);
 
 #ifdef SHOWDEGUGINFO
   Serial.print(F("ID: "));
@@ -549,11 +552,13 @@ int ReceiveMessage()
   digitalWrite(DEBUGPIN,LOW);
 
   CD_Width = micros() - CD_Width;
+  /*
   if(CD_Width > 6800){
     Serial.print(CD_Width, DEC);
     Serial.print(",");
   }
-  if ((CD_Width >= 7600) && (CD_Width <= 8200))
+  */
+  if ((CD_Width >= 7600) && (CD_Width <= 8500))
   //if ((CD_Width >= 6800) && (CD_Width <= 8200))
   {
     //Serial.println(F("Checking"));
