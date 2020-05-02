@@ -70,22 +70,22 @@ const unsigned long PROGMEM IDLookup[]
 */
 
 /*** original Toyota wheels and sensors ***/
-/*
+
 const unsigned long PROGMEM IDLookup[]
 {
   0xD3ED7796, 0xD3ED76F4, 
   0xD3ED7724, 0xD3ED7726
 };
-*/
+
 
 /** Chrader cloned ***********/
-
+/*
 const unsigned long PROGMEM IDLookup[]
 {
   0xF3ED7796, 0xF3ED76F4, 
   0xF3ED7724, 0xF20F212A
 };
-
+*/
 
 
 
