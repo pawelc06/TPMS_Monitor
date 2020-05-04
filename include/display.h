@@ -2,6 +2,8 @@
 //#define USE_ADAFRUIT 1
 #define USE_TEXTONLY 1
 
+bool idsDisplayed = true;
+
 
 #if USE_ADAFRUIT
    #include <Adafruit_GFX.h>
@@ -82,33 +84,10 @@
 
    SSD1306AsciiWire display;
 
-
-   void ShowTitle(char* verStr)
-  {
-    display.clear();
-  
-    display.set1X();             // Normal 1:1 pixel scale
-    //display.setTextColor(WHITE, BLACK);       // Draw white text
-  
-    display.setCursor(0, 0);
-    display.println("Toyota TPMS Monitor");
-    display.println("Pressure in [kPa]");
-
-    display.setCursor(8,20);
-  //display.println("Toyota TPMS Monitor");  
-  display.print("      ver "); 
-  display.println(verStr); 
-  display.println(" "); 
-  display.println("  Waiting for signal"); 
-  display.println(" from TPMS sensors..."); 
-   
-  
-  
-  }
-
-  void showIDs(){
+void showIDs(){
     char idStr[9];
     uint8_t x,y;
+    
     display.set1X();             // Normal 1:1 pixel scale
     
    
@@ -141,6 +120,32 @@
       
     }
   }
+
+   void ShowTitle()
+  {
+    display.clear();
+  
+    display.set1X();             // Normal 1:1 pixel scale
+    //display.setTextColor(WHITE, BLACK);       // Draw white text
+    display.setCursor(0,0);
+    //display.println("                              ");
+    //display.println("                              ");
+  
+    display.setCursor(0, 0);
+    if(idsDisplayed){
+      showIDs();
+    } else {
+     display.println("Toyota TPMS Monitor");
+     display.println("Pressure in [kPa]");
+    }
+
+    
+   
+  
+  
+  }
+
+  
 
   char DisplayTimeoutBar(unsigned long TimeSinceLastUpdate)
   {
@@ -184,8 +189,9 @@
     int y = 0;
     char s[6];
   
-    //ShowTitle();
-    showIDs();
+    ShowTitle();
+    idsDisplayed = !idsDisplayed;
+    //showIDs();
 
   
     for (i = 0; i < 4; i++)
@@ -245,12 +251,7 @@
 
     }
 
-    /*
-     display.setCursor(0, 9);
-     display.print(TPMS[0].TPMS_ID,HEX);
-     display.print(" ");
-     display.print(TPMS[1].TPMS_ID,HEX);
-     */
+    
   
   }
 #endif

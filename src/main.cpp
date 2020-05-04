@@ -138,7 +138,7 @@ void setup() {
 
   itoa(ver,verStr,16);
   
-  ShowTitle(verStr);
+  ShowTitle();
   
   /*
   for(int i=0;i<4;i++){
