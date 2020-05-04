@@ -1,5 +1,7 @@
+#include "utils.h"
 //#define USE_ADAFRUIT 1
 #define USE_TEXTONLY 1
+
 
 #if USE_ADAFRUIT
    #include <Adafruit_GFX.h>
@@ -81,7 +83,7 @@
    SSD1306AsciiWire display;
 
 
-   void ShowTitle()
+   void ShowTitle(char* verStr)
   {
     display.clear();
   
@@ -91,9 +93,53 @@
     display.setCursor(0, 0);
     display.println("Toyota TPMS Monitor");
     display.println("Pressure in [kPa]");
+
+    display.setCursor(8,20);
+  //display.println("Toyota TPMS Monitor");  
+  display.print("      ver "); 
+  display.println(verStr); 
+  display.println(" "); 
+  display.println("  Waiting for signal"); 
+  display.println(" from TPMS sensors..."); 
    
   
   
+  }
+
+  void showIDs(){
+    char idStr[9];
+    uint8_t x,y;
+    display.set1X();             // Normal 1:1 pixel scale
+    
+   
+     
+    for(int i=0;i<4;i++){
+      //TPMS[i].TPMS_ID = pgm_read_dword(&IDLookup[i]);
+      oneULong(idStr, TPMS[i].TPMS_ID);
+      
+      switch (i){
+        case 0:
+          x=5;
+          y=0;
+          break;
+        case 1:
+          x=75;
+          y=0;
+          break;
+        case 2:
+          x=5;
+          y=1;
+          break;
+        case 3:
+          x=75;
+          y=1;
+          break;
+
+      }
+      display.setCursor(x, y);
+      display.print(idStr);
+      
+    }
   }
 
   char DisplayTimeoutBar(unsigned long TimeSinceLastUpdate)
@@ -138,8 +184,8 @@
     int y = 0;
     char s[6];
   
-    ShowTitle();
-  
+    //ShowTitle();
+    showIDs();
 
   
     for (i = 0; i < 4; i++)

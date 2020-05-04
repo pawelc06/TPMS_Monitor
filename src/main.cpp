@@ -54,6 +54,8 @@ void setup() {
   int LEDState = LOW;
   int i;
   int mcount;
+  char idStr[11];
+  unsigned long sensorId;
 
   //SPI CC1101 chip select set up
   pinMode(CC1101_CS, OUTPUT);
@@ -135,10 +137,21 @@ void setup() {
   InitTPMS();
 
   itoa(ver,verStr,16);
-
-  display.write("Ver:");  
-  display.write(verStr);  
   
+  ShowTitle(verStr);
+  
+  /*
+  for(int i=0;i<4;i++){
+    display.setCursor(0,3+i);
+    //sprintf(idStr,"%08lX",(unsigned long)IDLookup[i]);
+    //ltoa(IDLookup[i], idStr, 16);
+    sensorId = pgm_read_dword(&IDLookup[i]);
+    oneULong(idStr, sensorId);
+    Serial.println(idStr);
+    display.print(idStr);
+    
+  }
+  */
 
 
   digitalWrite(LED_RX, LED_OFF);

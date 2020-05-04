@@ -24,7 +24,7 @@ int GetPreferredIndex(unsigned long ID)
 
   for (i = 0; i  < (sizeof(IDLookup) / sizeof(IDLookup[0])); i++)
   {
-    if (IDLookup[i] == ID)
+    if (pgm_read_dword(&IDLookup[i]) == ID)
     {
       return (i);
     }
