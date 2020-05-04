@@ -22,9 +22,18 @@ int GetPreferredIndex(unsigned long ID)
 {
   int i;
 
-  for (i = 0; i  < (sizeof(IDLookup) / sizeof(IDLookup[0])); i++)
+  for (i = 0; i  < (sizeof(IDLookupSummer) / sizeof(IDLookupSummer[0])); i++)
   {
-    if (pgm_read_dword(&IDLookup[i]) == ID)
+    if (pgm_read_dword(&IDLookupSummer[i]) == ID)
+    {
+      return (i);
+    }
+
+  }
+
+  for (i = 0; i  < (sizeof(IDLookupWinter) / sizeof(IDLookupWinter[0])); i++)
+  {
+    if (pgm_read_dword(&IDLookupWinter[i]) == ID)
     {
       return (i);
     }

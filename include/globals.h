@@ -71,7 +71,7 @@ const unsigned long PROGMEM IDLookup[]
 
 /*** original Toyota wheels and sensors ***/
 
-const unsigned long IDLookup[] PROGMEM
+const unsigned long IDLookupSummer[] PROGMEM
 {
   0xD3ED7796, 0xD3ED76F4, 
   0xD3ED7724, 0xD3ED7726
@@ -79,13 +79,13 @@ const unsigned long IDLookup[] PROGMEM
 
 
 /** Chrader cloned ***********/
-/*
-const unsigned long PROGMEM IDLookup[]
+
+const unsigned long IDLookupWinter[] PROGMEM
 {
   0xF3ED7796, 0xF3ED76F4, 
   0xF3ED7724, 0xF20F212A
 };
-*/
+
 
 
 
